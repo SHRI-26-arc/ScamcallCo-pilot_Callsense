@@ -6,612 +6,734 @@
 <title>Call Sense</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #05070a;
-    color: white;
-    min-height: 100vh;
-    overflow-x: hidden;
-    transition: background 0.3s ease;
+html{
+    scroll-behavior:smooth;
 }
 
-/* ================= BACKGROUND ================= */
-
-.cyber-background {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(0,255,170,0.08), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(0,150,255,0.08), transparent 30%),
-        #05070a;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050708;
+    color:#fff;
+    min-height:100vh;
+    overflow-x:hidden;
 }
 
-.cyber-background::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(0,255,170,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,170,0.025) 1px, transparent 1px);
-    background-size: 45px 45px;
+/* ================= CRYPTO BACKGROUND ================= */
+
+.crypto-bg{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+    opacity:.16;
+}
+
+.crypto-line{
+    position:absolute;
+    width:200%;
+    left:-50%;
+    white-space:nowrap;
+    color:#00ffae;
+    font-family:monospace;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:8px;
+    line-height:55px;
+    transform:rotate(-12deg);
+}
+
+.crypto-line:nth-child(1){top:2%}
+.crypto-line:nth-child(2){top:12%}
+.crypto-line:nth-child(3){top:22%}
+.crypto-line:nth-child(4){top:32%}
+.crypto-line:nth-child(5){top:42%}
+.crypto-line:nth-child(6){top:52%}
+.crypto-line:nth-child(7){top:62%}
+.crypto-line:nth-child(8){top:72%}
+.crypto-line:nth-child(9){top:82%}
+.crypto-line:nth-child(10){top:92%}
+
+.page{
+    position:relative;
+    z-index:1;
 }
 
 /* ================= NAVBAR ================= */
 
-.navbar {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    background: rgba(5,7,10,0.85);
-    backdrop-filter: blur(10px);
+nav{
+    height:70px;
+    border-bottom:1px solid rgba(0,255,174,.15);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:rgba(5,7,8,.92);
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(12px);
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 3px;
+.logo{
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:3px;
 }
 
-.logo span {
-    color: #00ffae;
+.logo span{
+    color:#00ffae;
 }
 
-.nav-status {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #00ffae;
+.nav-status{
+    color:#8b949e;
+    font-size:11px;
+    letter-spacing:1px;
 }
 
-.status-dot {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    background: #00ffae;
-    border-radius: 50%;
-    margin-right: 7px;
-    box-shadow: 0 0 10px #00ffae;
+/* ================= GENERAL ================= */
+
+.container{
+    width:86%;
+    max-width:1100px;
+    margin:auto;
 }
 
-/* ================= PAGES ================= */
-
-.page {
-    display: none;
-    min-height: calc(100vh - 120px);
+section{
+    min-height:calc(100vh - 70px);
+    padding:80px 0;
 }
 
-.page.active {
-    display: block;
+button{
+    font-family:inherit;
 }
 
 /* ================= HOME ================= */
 
-.home {
-    max-width: 1150px;
-    margin: auto;
-    padding: 90px 30px;
+#home{
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.badge {
-    display: inline-block;
-    border: 1px solid rgba(0,255,174,0.4);
-    color: #00ffae;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
+.hero{
+    text-align:center;
+    max-width:800px;
 }
 
-.hero {
-    max-width: 700px;
+.badge{
+    display:inline-block;
+    border:1px solid #00ffae;
+    color:#00ffae;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:10px;
+    letter-spacing:2px;
+    margin-bottom:25px;
+    background:rgba(0,255,174,.05);
 }
 
-.hero h1 {
-    font-size: clamp(50px, 9vw, 100px);
-    letter-spacing: -5px;
-    line-height: 0.9;
-    margin-bottom: 30px;
+.hero h1{
+    font-size:70px;
+    letter-spacing:8px;
+    margin-bottom:20px;
 }
 
-.hero h1 span {
-    color: #00ffae;
+.hero h1 span{
+    color:#00ffae;
 }
 
-.hero p {
-    color: #9ba3ad;
-    line-height: 1.7;
-    max-width: 620px;
-    margin-bottom: 35px;
+.hero p{
+    color:#9ba3ad;
+    max-width:600px;
+    margin:0 auto 35px;
+    line-height:1.7;
+    font-size:14px;
 }
 
-.btn {
-    display: inline-block;
-    padding: 16px 24px;
-    background: #00ffae;
-    color: #00150e;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    transition: 0.2s;
+.start-btn{
+    background:#00ffae;
+    color:#00150f;
+    border:none;
+    padding:18px 35px;
+    font-weight:bold;
+    letter-spacing:2px;
+    cursor:pointer;
+    border-radius:4px;
+    transition:.2s;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(0,255,174,0.35);
+.start-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 30px rgba(0,255,174,.25);
 }
 
-.security-card {
-    margin-top: 70px;
-    max-width: 600px;
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 25px;
-    background: rgba(255,255,255,0.025);
-}
-
-.security-card h3 {
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    color: #00ffae;
-}
-
-.radar {
-    height: 180px;
-    border-radius: 50%;
-    border: 1px solid rgba(0,255,174,0.25);
-    position: relative;
-    overflow: hidden;
+.radar{
+    width:180px;
+    height:180px;
+    border:1px solid rgba(0,255,174,.4);
+    border-radius:50%;
+    margin:60px auto 0;
+    position:relative;
     background:
-        radial-gradient(circle, transparent 20%, rgba(0,255,174,0.03) 21%, transparent 22%),
-        radial-gradient(circle, transparent 45%, rgba(0,255,174,0.03) 46%, transparent 47%);
+        radial-gradient(circle,transparent 30%,rgba(0,255,174,.03) 31%,transparent 32%),
+        radial-gradient(circle,transparent 60%,rgba(0,255,174,.03) 61%,transparent 62%);
 }
 
-.radar-line {
-    position: absolute;
-    width: 50%;
-    height: 1px;
-    background: #00ffae;
-    top: 50%;
-    left: 50%;
-    transform-origin: left;
-    animation: radar 3s linear infinite;
+.radar:before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:50%;
+    height:1px;
+    background:#00ffae;
+    transform-origin:left;
+    animation:radar 3s linear infinite;
 }
 
-@keyframes radar {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
+@keyframes radar{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
 }
 
 /* ================= PROTECTION ================= */
 
-.protection {
-    max-width: 1100px;
-    margin: auto;
-    padding: 55px 25px;
+#protection{
+    display:none;
 }
 
-.protection-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+.section-title{
+    margin-bottom:35px;
 }
 
-.protection-header h2 {
-    font-size: 30px;
+.section-title h2{
+    font-size:30px;
+    letter-spacing:4px;
 }
 
-.active-label {
-    color: #00ffae;
-    font-size: 11px;
-    letter-spacing: 2px;
+.section-title p{
+    color:#7d8790;
+    font-size:12px;
+    margin-top:8px;
 }
 
-.timer {
-    color: #9ba3ad;
-    font-family: monospace;
-    margin-top: 8px;
+.top-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.card{
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(10,14,16,.82);
+    padding:25px;
+    border-radius:5px;
+    backdrop-filter:blur(6px);
+}
+
+.card-title{
+    color:#7d8790;
+    font-size:10px;
+    letter-spacing:2px;
+    margin-bottom:12px;
+}
+
+.timer{
+    font-size:30px;
+    font-family:monospace;
+    color:#00ffae;
+}
+
+.listening{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.mic-dot{
+    width:13px;
+    height:13px;
+    background:#00ffae;
+    border-radius:50%;
+    box-shadow:0 0 15px #00ffae;
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+    50%{opacity:.3;transform:scale(.7)}
+}
+
+.mic-text{
+    font-size:13px;
+}
+
+.mic-toggle{
+    margin-left:auto;
+    border:1px solid #00ffae;
+    background:transparent;
+    color:#00ffae;
+    padding:8px 12px;
+    cursor:pointer;
+    font-size:10px;
 }
 
 /* ================= RISK ================= */
 
-.risk-card {
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 25px;
-    margin-bottom: 20px;
-    background: rgba(255,255,255,0.025);
-    transition: 0.3s;
+.risk-card{
+    margin-bottom:20px;
 }
 
-.risk-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.risk-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
 }
 
-.risk-number {
-    font-size: 45px;
-    font-weight: bold;
+.risk-number{
+    font-size:48px;
+    font-weight:bold;
 }
 
-.risk-level {
-    color: #00ffae;
-    font-weight: bold;
-    letter-spacing: 2px;
+.risk-label{
+    font-size:11px;
+    letter-spacing:2px;
+    color:#00ffae;
 }
 
-.risk-bar {
-    height: 8px;
-    background: #1a1d22;
-    margin-top: 20px;
-    overflow: hidden;
+.risk-bar{
+    height:12px;
+    background:#151a1d;
+    overflow:hidden;
+    border-radius:10px;
 }
 
-.risk-fill {
-    height: 100%;
-    width: 0%;
-    background: #00ffae;
-    transition: 0.4s;
+.risk-fill{
+    height:100%;
+    width:0%;
+    background:#00ffae;
+    transition:.4s;
 }
 
-/* ================= MICROPHONE ================= */
+/* ================= TRANSCRIPTION ================= */
 
-.listening-card {
-    border: 1px solid rgba(0,255,174,0.3);
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    cursor: pointer;
-    background: rgba(0,255,174,0.025);
-    margin-bottom: 20px;
-    transition: 0.3s;
+.transcription{
+    margin-bottom:20px;
 }
 
-.listening-card:hover {
-    border-color: #00ffae;
+.transcript-box{
+    min-height:130px;
+    border:1px solid rgba(0,255,174,.12);
+    padding:20px;
+    color:#c9d1d9;
+    font-family:monospace;
+    font-size:13px;
+    line-height:1.7;
+    background:rgba(0,0,0,.35);
 }
 
-.mic-icon {
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid #00ffae;
-    font-size: 28px;
-    flex-shrink: 0;
-}
-
-.mic-icon.listening {
-    animation: pulse 1.2s infinite;
-    background: rgba(0,255,174,0.1);
-}
-
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(0,255,174,0.5);
-    }
-
-    70% {
-        box-shadow: 0 0 0 18px rgba(0,255,174,0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(0,255,174,0);
-    }
-}
-
-.listening-card h3 {
-    font-size: 12px;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-}
-
-.listening-card p {
-    color: #8f98a3;
-    font-size: 13px;
-}
-
-/* ================= TRANSCRIPT ================= */
-
-.transcript-card {
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.025);
-    padding: 25px;
-    margin-bottom: 20px;
-}
-
-.section-title {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #00ffae;
-    margin-bottom: 15px;
-}
-
-.transcript {
-    min-height: 180px;
-    max-height: 300px;
-    overflow-y: auto;
-    background: #020304;
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 20px;
-    font-family: monospace;
-    color: #d5d9dd;
-    line-height: 1.7;
-    white-space: pre-wrap;
-}
-
-.placeholder {
-    color: #58616b;
+.transcript-placeholder{
+    color:#586069;
 }
 
 /* ================= TACTICS ================= */
 
-.tactics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
+.tactics{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:25px;
 }
 
-.tactic {
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 18px;
-    background: rgba(255,255,255,0.025);
+.tactic{
+    border:1px solid rgba(255,255,255,.08);
+    padding:20px 15px;
+    background:rgba(10,14,16,.8);
+    text-align:center;
+    transition:.3s;
 }
 
-.tactic.detected {
-    border-color: #ff3333;
-    background: rgba(255,0,0,0.08);
+.tactic-icon{
+    font-size:25px;
+    margin-bottom:10px;
+    opacity:.4;
 }
 
-.tactic-icon {
-    font-size: 22px;
-    margin-bottom: 12px;
+.tactic-name{
+    font-size:10px;
+    letter-spacing:1px;
+    color:#7d8790;
 }
 
-.tactic h4 {
-    font-size: 11px;
-    letter-spacing: 1px;
-    margin-bottom: 7px;
+.tactic.detected{
+    border-color:#ff3b3b;
+    background:rgba(255,0,0,.08);
 }
 
-.tactic p {
-    color: #747d87;
-    font-size: 11px;
+.tactic.detected .tactic-icon{
+    opacity:1;
 }
 
-.detected-text {
-    color: #ff4444 !important;
+.tactic.detected .tactic-name{
+    color:#ff4b4b;
 }
 
 /* ================= WARNING ================= */
 
-.warning {
-    display: none;
-    border: 2px solid #ff2222;
-    background: rgba(255,0,0,0.12);
-    padding: 25px;
-    margin-top: 20px;
-    animation: warningPulse 1s infinite alternate;
+.warning{
+    display:none;
+    border:1px solid #ff3030;
+    background:rgba(255,0,0,.08);
+    padding:22px;
+    margin-bottom:20px;
 }
 
-.warning.active {
-    display: block;
+.warning h3{
+    color:#ff4141;
+    font-size:14px;
+    letter-spacing:2px;
+    margin-bottom:8px;
 }
 
-.warning h2 {
-    color: #ff3333;
-    font-size: 22px;
-    margin-bottom: 10px;
+.warning p{
+    color:#ffb0b0;
+    font-size:12px;
+    line-height:1.6;
 }
 
-.warning p {
-    color: #ffb3b3;
-    line-height: 1.6;
+/* ================= EMERGENCY ================= */
+
+.emergency{
+    display:none;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-bottom:25px;
 }
 
-@keyframes warningPulse {
-    from {
-        box-shadow: 0 0 10px rgba(255,0,0,0.1);
-    }
-
-    to {
-        box-shadow: 0 0 35px rgba(255,0,0,0.35);
-    }
+.emergency button{
+    padding:18px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    letter-spacing:1px;
+    font-size:12px;
 }
 
-/* ================= ACTIONS ================= */
-
-.emergency-actions {
-    display: none;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 20px;
+.call-btn{
+    background:#ff3030;
+    color:#fff;
 }
 
-.emergency-actions.active {
-    display: grid;
+.family-btn{
+    background:#fff;
+    color:#111;
 }
 
-.action-btn {
-    border: none;
-    padding: 18px;
-    cursor: pointer;
-    font-weight: bold;
-    letter-spacing: 1px;
-    font-size: 12px;
+.emergency button:hover{
+    filter:brightness(.9);
 }
 
-.call-btn {
-    background: #ff3333;
-    color: white;
+/* ================= FAMILY ================= */
+
+.family-box{
+    margin-top:25px;
+    max-width:600px;
+    border:1px solid rgba(0,255,174,.2);
+    padding:25px;
+    background:rgba(255,255,255,.02);
 }
 
-.family-btn {
-    background: #ffb000;
-    color: #160d00;
+.family-box h3{
+    font-size:12px;
+    letter-spacing:2px;
+    color:#00ffae;
+    margin-bottom:12px;
 }
 
-.action-btn:hover {
-    filter: brightness(1.15);
+.family-box p{
+    color:#9ba3ad;
+    font-size:11px;
+    line-height:1.6;
 }
 
 /* ================= STOP ================= */
 
-.stop-btn {
-    margin-top: 25px;
-    background: transparent;
-    color: #ff5555;
-    border: 1px solid #ff3333;
-    padding: 13px 20px;
-    cursor: pointer;
+.stop-btn{
+    margin-top:30px;
+    border:1px solid #555;
+    color:#aaa;
+    background:transparent;
+    padding:12px 20px;
+    cursor:pointer;
+    font-size:10px;
+    letter-spacing:1px;
 }
 
-/* ================= RED ALERT MODE ================= */
-
-body.danger {
-    background: #240000;
+.stop-btn:hover{
+    border-color:#fff;
+    color:#fff;
 }
 
-body.danger .cyber-background {
-    background:
-        radial-gradient(circle at 50% 30%, rgba(255,0,0,0.3), transparent 45%),
-        #180000;
+/* ================= DANGER MODE ================= */
+
+body.danger{
+    background:#170000;
 }
 
-body.danger .navbar {
-    border-bottom-color: rgba(255,0,0,0.5);
+body.danger .page{
+    filter:brightness(.75);
 }
 
-body.danger .nav-status,
-body.danger .active-label {
-    color: #ff3333;
+.danger-overlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:rgba(150,0,0,.94);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    pointer-events:none;
 }
 
-body.danger .status-dot {
-    background: #ff3333;
-    box-shadow: 0 0 15px #ff3333;
+.danger-overlay.active{
+    display:flex;
+    pointer-events:auto;
 }
 
-body.danger .risk-card {
-    border-color: #ff2222;
-    background: rgba(255,0,0,0.1);
+.danger-content{
+    width:90%;
+    max-width:800px;
 }
 
-body.danger .risk-fill {
-    background: #ff2222;
+.scam-alert{
+    font-size:clamp(55px,10vw,130px);
+    font-weight:900;
+    color:#fff;
+    letter-spacing:5px;
+    text-shadow:0 0 30px #000;
+    animation:alertFlash .8s infinite alternate;
 }
 
-body.danger .risk-level {
-    color: #ff3333;
+@keyframes alertFlash{
+    from{transform:scale(1)}
+    to{transform:scale(1.04)}
 }
 
-body.danger .listening-card {
-    border-color: #ff3333;
-    background: rgba(255,0,0,0.08);
+.danger-sub{
+    color:#fff;
+    font-size:18px;
+    letter-spacing:3px;
+    margin-top:15px;
 }
 
-body.danger .mic-icon {
-    border-color: #ff3333;
+.danger-actions{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.danger-actions button{
+    padding:18px 30px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:13px;
+    letter-spacing:1px;
+    pointer-events:auto;
+}
+
+.danger-call{
+    background:#fff;
+    color:#900;
+}
+
+.danger-family{
+    background:#111;
+    color:#fff;
+    border:1px solid #fff !important;
+}
+
+.dismiss-alert{
+    margin-top:18px;
+    background:#fff;
+    color:#700000;
+    border:none;
+    padding:14px 24px;
+    font-weight:bold;
+    letter-spacing:1px;
+    cursor:pointer;
+    pointer-events:auto;
+}
+
+.dismiss-alert:hover{
+    filter:brightness(.9);
+}
+
+/* ================= SUCCESS SCREEN ================= */
+
+.success-screen{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    background:#050708;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.success-screen.active{
+    display:flex;
+}
+
+.success-box{
+    width:90%;
+    max-width:600px;
+    padding:50px 30px;
+    border:1px solid #00ffae;
+    background:rgba(0,255,174,.04);
+    box-shadow:0 0 50px rgba(0,255,174,.08);
+}
+
+.success-icon{
+    font-size:70px;
+    color:#00ffae;
+    margin-bottom:20px;
+}
+
+.success-box h2{
+    font-size:28px;
+    letter-spacing:3px;
+    margin-bottom:15px;
+}
+
+.success-box p{
+    color:#9ba3ad;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+.success-box button{
+    background:#00ffae;
+    color:#00150f;
+    border:none;
+    padding:15px 25px;
+    font-weight:bold;
+    cursor:pointer;
+    letter-spacing:1px;
 }
 
 /* ================= MODAL ================= */
 
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10001;
+    background:rgba(0,0,0,.8);
+    align-items:center;
+    justify-content:center;
 }
 
-.modal.active {
-    display: flex;
+.modal.active{
+    display:flex;
 }
 
-.modal-box {
-    max-width: 450px;
-    width: 100%;
-    background: #101317;
-    border: 1px solid #ffb000;
-    padding: 30px;
+.modal-box{
+    width:90%;
+    max-width:450px;
+    background:#0b0f11;
+    border:1px solid #00ffae;
+    padding:30px;
+    text-align:center;
 }
 
-.modal-box h2 {
-    margin-bottom: 15px;
+.modal-box h2{
+    color:#00ffae;
+    font-size:18px;
+    letter-spacing:2px;
+    margin-bottom:15px;
 }
 
-.modal-box p {
-    color: #9ba3ad;
-    line-height: 1.6;
-    margin-bottom: 20px;
+.modal-box p{
+    color:#9ba3ad;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:25px;
 }
 
-.close-btn {
-    background: transparent;
-    color: white;
-    border: 1px solid #555;
-    padding: 12px 20px;
-    cursor: pointer;
+.modal-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.modal-buttons button{
+    flex:1;
+    padding:13px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.send-alert{
+    background:#00ffae;
+    color:#00150f;
+}
+
+.cancel{
+    background:#222;
+    color:#fff;
 }
 
 /* ================= FOOTER ================= */
 
-footer {
-    height: 50px;
-    border-top: 1px solid rgba(255,255,255,0.07);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #58616b;
-    font-size: 10px;
-    letter-spacing: 1px;
+footer{
+    border-top:1px solid rgba(255,255,255,.08);
+    padding:25px;
+    text-align:center;
+    color:#586069;
+    font-size:9px;
+    letter-spacing:2px;
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media(max-width: 750px) {
+@media(max-width:700px){
 
-    .tactics {
-        grid-template-columns: 1fr 1fr;
+    .hero h1{
+        font-size:45px;
     }
 
-    .emergency-actions {
-        grid-template-columns: 1fr;
+    .top-grid{
+        grid-template-columns:1fr;
     }
 
-    .protection-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+    .tactics{
+        grid-template-columns:1fr 1fr;
     }
 
-    .hero h1 {
-        letter-spacing: -3px;
+    .emergency{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        padding:0 5%;
+    }
+
+    .nav-status{
+        font-size:9px;
     }
 }
 </style>
@@ -619,391 +741,362 @@ footer {
 
 <body>
 
-<div class="cyber-background"></div>
+<!-- ================= CRYPTO BACKGROUND ================= -->
 
-<!-- ================= NAVBAR ================= -->
+<div class="crypto-bg">
 
-<nav class="navbar">
-
-    <div class="logo">
-        CALL <span>SENSE</span>
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
     </div>
 
-    <div class="nav-status">
-
-        <span class="status-dot"></span>
-
-        <span id="nav-status">
-            SYSTEM READY
-        </span>
-
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
     </div>
 
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
+    </div>
+
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
+    </div>
+
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
+    </div>
+
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
+    </div>
+
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
+    </div>
+
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
+    </div>
+
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
+    </div>
+
+    <div class="crypto-line">
+        CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO • CRYPTO
+    </div>
+
+</div>
+
+<div class="page">
+
+<nav>
+    <div class="logo">CALL <span>SENSE</span></div>
+    <div class="nav-status" id="nav-status">● SYSTEM READY</div>
 </nav>
-
 
 <!-- ================= HOME ================= -->
 
-<section id="home" class="page active">
+<section id="home">
+<div class="container">
 
-    <div class="home">
+<div class="hero">
 
-        <div class="badge">
-            AI-POWERED CALL PROTECTION
-        </div>
+    <div class="badge">AI-POWERED CALL PROTECTION</div>
 
-        <div class="hero">
+    <h1>CALL <span>SENSE</span></h1>
 
-            <h1>
-                Call <span>Sense</span>
-            </h1>
+    <p>
+        Real-time scam call detection that listens for suspicious
+        language, identifies scam tactics and protects you before
+        you lose money.
+    </p>
 
-            <p>
-                Call Sense listens for suspicious scam tactics during a call,
-                detects dangerous keywords and warns you before you lose money.
-            </p>
+    <button class="start-btn" onclick="startProtection()">
+        ◉ START PROTECTION →
+    </button>
 
-            <button class="btn" onclick="startProtection()">
-                ◉ START PROTECTION →
-            </button>
+    <div class="radar"></div>
 
-        </div>
+</div>
 
-        <div class="security-card">
-
-            <h3>
-                LIVE THREAT MONITORING
-            </h3>
-
-            <div class="radar">
-
-                <div class="radar-line"></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
+</div>
 </section>
 
 
 <!-- ================= PROTECTION ================= -->
 
-<section id="protection" class="page">
+<section id="protection">
 
-    <div class="protection">
+<div class="container">
 
-        <div class="protection-header">
+<div class="section-title">
+    <h2>PROTECTION ACTIVE</h2>
+    <p>REAL-TIME THREAT MONITORING</p>
+</div>
 
-            <div>
+<div class="top-grid">
 
-                <div class="active-label">
-                    ● PROTECTION ACTIVE
-                </div>
+    <div class="card">
+        <div class="card-title">PROTECTION TIME</div>
+        <div class="timer" id="timer">00:00</div>
+    </div>
 
-                <h2>
-                    Call Protection
-                </h2>
+    <div class="card">
+        <div class="card-title">MICROPHONE</div>
 
-                <div class="timer">
-                    CALL TIME:
-                    <span id="timer">00:00</span>
-                </div>
+        <div class="listening">
 
+            <div class="mic-dot" id="mic-dot"></div>
+
+            <div class="mic-text" id="mic-text">
+                Listening for suspicious speech
             </div>
 
-        </div>
-
-
-        <!-- ================= RISK ================= -->
-
-        <div class="risk-card">
-
-            <div class="risk-top">
-
-                <div>
-
-                    <div class="section-title">
-                        CURRENT RISK LEVEL
-                    </div>
-
-                    <div class="risk-number">
-
-                        <span id="risk-number">
-                            0
-                        </span>%
-
-                    </div>
-
-                </div>
-
-                <div id="risk-level" class="risk-level">
-                    SAFE
-                </div>
-
-            </div>
-
-            <div class="risk-bar">
-
-                <div
-                    id="risk-fill"
-                    class="risk-fill">
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= MICROPHONE ================= -->
-
-        <div
-            class="listening-card"
-            onclick="toggleMicrophone()"
-            id="mic-card"
-        >
-
-            <div
-                class="mic-icon"
-                id="mic-icon"
-            >
-                🎤
-            </div>
-
-            <div>
-
-                <h3 id="mic-status">
-                    🎤 MICROPHONE: READY
-                </h3>
-
-                <p id="mic-message">
-                    Click here to allow Call Sense to use your microphone.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= TRANSCRIPT ================= -->
-
-        <div class="transcript-card">
-
-            <div class="section-title">
-                LIVE TRANSCRIPTION
-            </div>
-
-            <div
-                class="transcript"
-                id="transcript"
-            >
-
-                <span class="placeholder">
-                    Waiting for speech...
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= SCAM TACTICS ================= -->
-
-        <div class="tactics">
-
-            <div
-                class="tactic"
-                id="tactic-authority"
-            >
-
-                <div class="tactic-icon">
-                    👮
-                </div>
-
-                <h4>
-                    FAKE AUTHORITY
-                </h4>
-
-                <p id="authority-text">
-                    Not detected
-                </p>
-
-            </div>
-
-
-            <div
-                class="tactic"
-                id="tactic-urgency"
-            >
-
-                <div class="tactic-icon">
-                    ⚡
-                </div>
-
-                <h4>
-                    URGENCY
-                </h4>
-
-                <p id="urgency-text">
-                    Not detected
-                </p>
-
-            </div>
-
-
-            <div
-                class="tactic"
-                id="tactic-secrecy"
-            >
-
-                <div class="tactic-icon">
-                    🤫
-                </div>
-
-                <h4>
-                    SECRECY
-                </h4>
-
-                <p id="secrecy-text">
-                    Not detected
-                </p>
-
-            </div>
-
-
-            <div
-                class="tactic"
-                id="tactic-money"
-            >
-
-                <div class="tactic-icon">
-                    💰
-                </div>
-
-                <h4>
-                    MONEY REQUEST
-                </h4>
-
-                <p id="money-text">
-                    Not detected
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= WARNING ================= -->
-
-        <div
-            class="warning"
-            id="warning"
-        >
-
-            <h2>
-                🚨 HIGH RISK SCAM DETECTED
-            </h2>
-
-            <p id="warning-text">
-                Suspicious scam language has been detected.
-                Do not share personal information or transfer money.
-            </p>
-
-        </div>
-
-
-        <!-- ================= EMERGENCY ACTIONS ================= -->
-
-        <div
-            class="emergency-actions"
-            id="emergency-actions"
-        >
-
-            <button
-                class="action-btn call-btn"
-                onclick="call1930()"
-            >
-
-                📞 CALL 1930
-
-                <br>
-
-                <small>
-                    CYBER CRIME HELPLINE
-                </small>
-
-            </button>
-
-
-            <button
-                class="action-btn family-btn"
-                onclick="contactFamily()"
-            >
-
-                👨‍👩‍👧 CONTACT FAMILY
-
-                <br>
-
-                <small>
-                    ALERT A TRUSTED PERSON
-                </small>
-
+            <button class="mic-toggle" onclick="toggleMicrophone()">
+                MIC ON
             </button>
 
         </div>
+    </div>
+
+</div>
 
 
-        <!-- ================= STOP ================= -->
+<!-- RISK -->
 
-        <button
-            class="stop-btn"
-            onclick="stopProtection()"
-        >
-            ■ STOP PROTECTION
-        </button>
+<div class="card risk-card">
+
+    <div class="risk-header">
+
+        <div>
+            <div class="card-title">CURRENT RISK</div>
+            <div class="risk-number" id="risk-number">0%</div>
+        </div>
+
+        <div class="risk-label" id="risk-label">
+            SAFE
+        </div>
 
     </div>
 
+    <div class="risk-bar">
+        <div class="risk-fill" id="risk-fill"></div>
+    </div>
+
+</div>
+
+
+<!-- TRANSCRIPTION -->
+
+<div class="card transcription">
+
+    <div class="card-title">
+        LIVE TRANSCRIPTION
+    </div>
+
+    <div class="transcript-box" id="transcript">
+
+        <span class="transcript-placeholder">
+            Waiting for speech...
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- TACTICS -->
+
+<div class="tactics">
+
+    <div class="tactic" id="authority">
+
+        <div class="tactic-icon">👮</div>
+
+        <div class="tactic-name">
+            FAKE AUTHORITY
+        </div>
+
+    </div>
+
+
+    <div class="tactic" id="urgency">
+
+        <div class="tactic-icon">⚡</div>
+
+        <div class="tactic-name">
+            URGENCY
+        </div>
+
+    </div>
+
+
+    <div class="tactic" id="secrecy">
+
+        <div class="tactic-icon">🤫</div>
+
+        <div class="tactic-name">
+            SECRECY
+        </div>
+
+    </div>
+
+
+    <div class="tactic" id="money">
+
+        <div class="tactic-icon">💰</div>
+
+        <div class="tactic-name">
+            MONEY REQUEST
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- WARNING -->
+
+<div class="warning" id="warning">
+
+    <h3>⚠ SCAM WARNING</h3>
+
+    <p>
+        This call contains multiple indicators commonly associated
+        with scams. Do not share passwords, OTPs, banking details
+        or transfer money.
+    </p>
+
+</div>
+
+
+<!-- EMERGENCY -->
+
+<div class="emergency" id="emergency">
+
+    <button class="call-btn" onclick="call1930()">
+        📞 CALL 1930
+    </button>
+
+    <button class="family-btn" onclick="contactFamily()">
+        👨‍👩‍👧 CONTACT FAMILY
+    </button>
+
+</div>
+
+
+<!-- FAMILY PROTECTION -->
+
+<div class="family-box">
+
+    <h3>FAMILY PROTECTION ACTIVE</h3>
+
+    <p>
+        Trusted contacts can be notified when a high-risk scam
+        situation is detected. Use CONTACT FAMILY above to send
+        an emergency alert.
+    </p>
+
+</div>
+
+
+<button class="stop-btn" onclick="stopProtection()">
+    ■ STOP PROTECTION
+</button>
+
+</div>
 </section>
 
-
-<!-- ================= FOOTER ================= -->
 
 <footer>
     CALL SENSE • REAL-TIME SCAM PROTECTION
 </footer>
 
+</div>
+
+
+<!-- ================= DANGER OVERLAY ================= -->
+
+<div class="danger-overlay" id="danger-overlay">
+
+<div class="danger-content">
+
+    <div class="scam-alert">
+        🚨 SCAM ALERT 🚨
+    </div>
+
+    <div class="danger-sub">
+        HIGH-RISK SCAM ACTIVITY DETECTED
+    </div>
+
+    <div class="danger-actions">
+
+        <button class="danger-call" onclick="call1930()">
+            📞 CALL 1930
+        </button>
+
+        <button class="danger-family" onclick="contactFamily()">
+            👨‍👩‍👧 CONTACT FAMILY
+        </button>
+
+    </div>
+
+    <button class="dismiss-alert" onclick="dismissDangerAlert()">
+        ✕ DISMISS ALERT & VIEW ANALYSIS
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- ================= SUCCESS SCREEN ================= -->
+
+<div class="success-screen" id="success-screen">
+
+<div class="success-box">
+
+    <div class="success-icon">✓</div>
+
+    <h2>CALL INITIATED</h2>
+
+    <p>
+        Your emergency call to <strong>1930</strong> has been
+        initiated successfully.
+        <br><br>
+        If this were a real emergency system, you would now be
+        connected to the National Cyber Crime Helpline.
+    </p>
+
+    <button onclick="closeSuccessScreen()">
+        RETURN TO CALL SENSE
+    </button>
+
+</div>
+
+</div>
+
 
 <!-- ================= FAMILY MODAL ================= -->
 
-<div
-    class="modal"
-    id="family-modal"
->
+<div class="modal" id="family-modal">
 
-    <div class="modal-box">
+<div class="modal-box">
 
-        <h2>
-            👨‍👩‍👧 Trusted Contact Alert
-        </h2>
+    <h2>TRUSTED CONTACT ALERT</h2>
 
-        <p>
-            A family member or trusted contact can be notified that
-            Call Sense has detected a potentially dangerous call.
-        </p>
+    <p>
+        Send an emergency notification to your trusted family
+        contact about this suspicious call?
+    </p>
 
-        <button
-            class="btn"
-            onclick="sendFamilyAlert()"
-        >
+    <div class="modal-buttons">
+
+        <button class="send-alert" onclick="sendFamilyAlert()">
             SEND ALERT
         </button>
 
-        <button
-            class="close-btn"
-            onclick="closeFamilyModal()"
-        >
+        <button class="cancel" onclick="closeFamilyModal()">
             CANCEL
         </button>
 
@@ -1011,1363 +1104,714 @@ footer {
 
 </div>
 
+</div>
+
 
 <script>
 
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-let recognition = null;
-
-let micStream = null;
-
-let listening = false;
+/* ================= VARIABLES ================= */
 
 let protectionActive = false;
-
-let timerSeconds = 0;
-
+let seconds = 0;
 let timerInterval = null;
+let microphoneStream = null;
+let recognition = null;
+let micEnabled = false;
 
 let risk = 0;
 
 let detected = {
-
-    authority: false,
-
-    urgency: false,
-
-    secrecy: false,
-
-    money: false
-
+    authority:false,
+    urgency:false,
+    secrecy:false,
+    money:false
 };
 
 
-/* =========================================================
-   START PROTECTION
-========================================================= */
+/* ================= KEYWORDS ================= */
 
-function startProtection() {
+const authorityKeywords = [
+    'police',
+    'cbi',
+    'customs',
+    'government',
+    'court',
+    'officer',
+    'cyber crime',
+    'cybercrime',
+    'ed officer',
+    'income tax'
+];
 
-    document.getElementById("home")
-        .classList.remove("active");
+const urgencyKeywords = [
+    'immediately',
+    'immediate',
+    'urgent',
+    'urgently',
+    'right now',
+    'quickly',
+    'hurry',
+    'within',
+    'today',
+    'as soon as possible',
+    "don't delay",
+    'do not delay'
+];
 
-    document.getElementById("protection")
-        .classList.add("active");
+const secrecyKeywords = [
+    "don't tell anyone",
+    'do not tell anyone',
+    'dont tell anyone',
+    'keep this secret',
+    'keep it secret',
+    "don't tell",
+    'do not tell',
+    'stay on the line',
+    'keep this private',
+    'tell nobody'
+];
+
+const moneyKeywords = [
+    'transfer',
+    'money',
+    'payment',
+    'pay',
+    'bank account',
+    'upi',
+    'send money',
+    'rupees',
+    '₹',
+    'transaction',
+    'deposit',
+    'fee'
+];
 
 
-    document.getElementById("nav-status")
-        .innerText =
-        "PROTECTION ACTIVE";
+/* ================= START ================= */
 
+async function startProtection(){
+
+    document.getElementById('home').style.display = 'none';
+    document.getElementById('protection').style.display = 'block';
 
     protectionActive = true;
 
-
     resetAnalysis();
 
-
-    startTimer();
-
-
-    window.scrollTo(0, 0);
-
-
-    /*
-       Request microphone permission
-       immediately.
-    */
-
-    startMicrophone();
-
-}
-
-
-/* =========================================================
-   MICROPHONE BUTTON
-========================================================= */
-
-function toggleMicrophone() {
-
-    if (listening) {
-
-        stopMicrophone();
-
-    }
-
-    else {
-
-        startMicrophone();
-
-    }
-
-}
-
-
-/* =========================================================
-   START MICROPHONE
-========================================================= */
-
-async function startMicrophone() {
-
-    if (!protectionActive) {
-
-        return;
-
-    }
-
-
-    /*
-       Check microphone support.
-    */
-
-    if (
-        !navigator.mediaDevices ||
-        !navigator.mediaDevices.getUserMedia
-    ) {
-
-        showMicError(
-            "Your browser does not support microphone access. Please use Google Chrome or Microsoft Edge."
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Check speech recognition support.
-    */
-
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-
-    if (!SpeechRecognition) {
-
-        showMicError(
-            "Microphone is available, but live speech-to-text is not supported here. Please use Google Chrome or Microsoft Edge."
-        );
-
-        return;
-
-    }
-
-
-    /*
-       Ask for microphone permission.
-    */
-
-    try {
-
-        micStream =
-            await navigator.mediaDevices.getUserMedia({
-                audio: true
-            });
-
-    }
-
-    catch (error) {
-
-        console.log(
-            "Microphone permission error:",
-            error
-        );
-
-
-        if (error.name === "NotAllowedError") {
-
-            showMicError(
-                "Microphone permission was denied. Click the 🔒 icon beside the website address, allow Microphone access, then try again."
-            );
-
-        }
-
-        else if (error.name === "NotFoundError") {
-
-            showMicError(
-                "No microphone was found. Please connect or enable a microphone."
-            );
-
-        }
-
-        else if (error.name === "NotReadableError") {
-
-            showMicError(
-                "The microphone is being used by another application."
-            );
-
-        }
-
-        else {
-
-            showMicError(
-                "Could not access the microphone. Please check your browser microphone settings."
-            );
-
-        }
-
-        return;
-
-    }
-
-
-    /*
-       Stop old recognition if it exists.
-    */
-
-    if (recognition) {
-
-        try {
-
-            recognition.stop();
-
-        }
-
-        catch (error) {}
-
-    }
-
-
-    /*
-       Create speech recognition.
-    */
-
-    recognition =
-        new SpeechRecognition();
-
-
-    recognition.continuous = true;
-
-    recognition.interimResults = true;
-
-    recognition.lang = "en-IN";
-
-
-    /* =====================================================
-       RECOGNITION START
-    ===================================================== */
-
-    recognition.onstart = function() {
-
-        listening = true;
-
-
-        document.getElementById("mic-status")
-            .innerText =
-            "🎤 MICROPHONE: LISTENING";
-
-
-        document.getElementById("mic-message")
-            .innerText =
-            "Call Sense is listening for suspicious speech.";
-
-
-        document.getElementById("mic-icon")
-            .classList.add("listening");
-
-    };
-
-
-    /* =====================================================
-       SPEECH RESULT
-    ===================================================== */
-
-    recognition.onresult = function(event) {
-
-        let finalText = "";
-
-        let interimText = "";
-
-
-        for (
-            let i = event.resultIndex;
-            i < event.results.length;
-            i++
-        ) {
-
-            let spokenText =
-                event.results[i][0].transcript;
-
-
-            if (
-                event.results[i].isFinal
-            ) {
-
-                finalText +=
-                    spokenText + " ";
-
-            }
-
-            else {
-
-                interimText +=
-                    spokenText;
-
-            }
-
-        }
-
-
-        /*
-           Add completed speech
-           to transcript.
-        */
-
-        if (
-            finalText.trim() !== ""
-        ) {
-
-            addTranscript(finalText);
-
-        }
-
-
-        /*
-           Analyze speech immediately.
-        */
-
-        let combinedText =
-            finalText + " " + interimText;
-
-
-        if (
-            combinedText.trim() !== ""
-        ) {
-
-            analyzeSpeech(
-                combinedText
-            );
-
-        }
-
-    };
-
-
-    /* =====================================================
-       RECOGNITION ERROR
-    ===================================================== */
-
-    recognition.onerror = function(event) {
-
-        console.log(
-            "Speech recognition error:",
-            event.error
-        );
-
-
-        if (
-            event.error === "not-allowed"
-        ) {
-
-            listening = false;
-
-
-            document.getElementById("mic-status")
-                .innerText =
-                "🎤 MICROPHONE: PERMISSION DENIED";
-
-
-            document.getElementById("mic-message")
-                .innerText =
-                "Allow microphone access in your browser settings.";
-
-
-            document.getElementById("mic-icon")
-                .classList.remove("listening");
-
-        }
-
-
-        else if (
-            event.error === "audio-capture"
-        ) {
-
-            listening = false;
-
-
-            document.getElementById("mic-status")
-                .innerText =
-                "🎤 NO MICROPHONE FOUND";
-
-
-            document.getElementById("mic-message")
-                .innerText =
-                "Please connect or enable a microphone.";
-
-
-            document.getElementById("mic-icon")
-                .classList.remove("listening");
-
-        }
-
-
-        else if (
-            event.error === "network"
-        ) {
-
-            document.getElementById("mic-status")
-                .innerText =
-                "🎤 SPEECH SERVICE ERROR";
-
-
-            document.getElementById("mic-message")
-                .innerText =
-                "Check your internet connection and try again.";
-
-        }
-
-
-        else if (
-            event.error === "service-not-allowed"
-        ) {
-
-            listening = false;
-
-
-            document.getElementById("mic-status")
-                .innerText =
-                "🎤 SPEECH SERVICE BLOCKED";
-
-
-            document.getElementById("mic-message")
-                .innerText =
-                "Please use Google Chrome or Microsoft Edge.";
-
-
-            document.getElementById("mic-icon")
-                .classList.remove("listening");
-
-        }
-
-
-        else if (
-            event.error === "no-speech"
-        ) {
-
-            /*
-               No speech is normal.
-               Keep listening.
-            */
-
-            console.log(
-                "No speech detected."
-            );
-
-        }
-
-    };
-
-
-    /* =====================================================
-       AUTOMATIC RESTART
-    ===================================================== */
-
-    recognition.onend = function() {
-
-        if (
-            listening &&
-            protectionActive
-        ) {
-
-            setTimeout(function() {
-
-                try {
-
-                    recognition.start();
-
-                }
-
-                catch (error) {
-
-                    console.log(
-                        "Recognition restart error:",
-                        error
-                    );
-
-                }
-
-            }, 500);
-
-        }
-
-    };
-
-
-    /* =====================================================
-       START RECOGNITION
-    ===================================================== */
-
-    try {
-
-        recognition.start();
-
-    }
-
-    catch (error) {
-
-        console.log(
-            "Could not start speech recognition:",
-            error
-        );
-
-
-        document.getElementById("mic-status")
-            .innerText =
-            "🎤 COULD NOT START";
-
-
-        document.getElementById("mic-message")
-            .innerText =
-            "Please click the microphone again.";
-
-    }
-
-}
-
-
-/* =========================================================
-   MICROPHONE ERROR
-========================================================= */
-
-function showMicError(message) {
-
-    listening = false;
-
-
-    document.getElementById("mic-status")
-        .innerText =
-        "🎤 MICROPHONE ERROR";
-
-
-    document.getElementById("mic-message")
-        .innerText =
-        message;
-
-
-    document.getElementById("mic-icon")
-        .classList.remove("listening");
-
-}
-
-
-/* =========================================================
-   STOP MICROPHONE
-========================================================= */
-
-function stopMicrophone() {
-
-    listening = false;
-
-
-    /*
-       Stop speech recognition.
-    */
-
-    if (recognition) {
-
-        try {
-
-            recognition.stop();
-
-        }
-
-        catch (error) {}
-
-    }
-
-
-    /*
-       Release microphone.
-    */
-
-    if (micStream) {
-
-        micStream
-            .getTracks()
-            .forEach(function(track) {
-
-                track.stop();
-
-            });
-
-
-        micStream = null;
-
-    }
-
-
-    document.getElementById("mic-status")
-        .innerText =
-        "🎤 MICROPHONE: OFF";
-
-
-    document.getElementById("mic-message")
-        .innerText =
-        "Click here to start listening again.";
-
-
-    document.getElementById("mic-icon")
-        .classList.remove("listening");
-
-}
-
-
-/* =========================================================
-   TRANSCRIPT
-========================================================= */
-
-function addTranscript(text) {
-
-    let transcript =
-        document.getElementById("transcript");
-
-
-    let placeholder =
-        transcript.querySelector(
-            ".placeholder"
-        );
-
-
-    if (placeholder) {
-
-        placeholder.remove();
-
-    }
-
-
-    transcript.innerText +=
-        text + "\n";
-
-
-    transcript.scrollTop =
-        transcript.scrollHeight;
-
-}
-
-
-/* =========================================================
-   SCAM DETECTION
-========================================================= */
-
-function analyzeSpeech(text) {
-
-    text =
-        text.toLowerCase();
-
-
-    /* ================= AUTHORITY ================= */
-
-    const authorityWords = [
-
-        "police",
-
-        "cbi",
-
-        "customs",
-
-        "government",
-
-        "court",
-
-        "officer",
-
-        "cyber crime",
-
-        "cybercrime",
-
-        "ed officer",
-
-        "income tax"
-
-    ];
-
-
-    /* ================= URGENCY ================= */
-
-    const urgencyWords = [
-
-        "immediately",
-
-        "immediate",
-
-        "urgent",
-
-        "urgently",
-
-        "right now",
-
-        "quickly",
-
-        "hurry",
-
-        "within",
-
-        "today",
-
-        "as soon as possible",
-
-        "don't delay",
-
-        "do not delay"
-
-    ];
-
-
-    /* ================= SECRECY ================= */
-
-    const secrecyWords = [
-
-        "don't tell anyone",
-
-        "do not tell anyone",
-
-        "dont tell anyone",
-
-        "keep this secret",
-
-        "keep it secret",
-
-        "don't tell",
-
-        "do not tell",
-
-        "stay on the line",
-
-        "keep this private",
-
-        "tell nobody"
-
-    ];
-
-
-    /* ================= MONEY ================= */
-
-    const moneyWords = [
-
-        "transfer",
-
-        "money",
-
-        "payment",
-
-        "pay",
-
-        "bank account",
-
-        "upi",
-
-        "send money",
-
-        "rupees",
-
-        "₹",
-
-        "transaction",
-
-        "deposit",
-
-        "fee"
-
-    ];
-
-
-    if (
-        containsKeyword(
-            text,
-            authorityWords
-        )
-    ) {
-
-        detectTactic(
-            "authority"
-        );
-
-    }
-
-
-    if (
-        containsKeyword(
-            text,
-            urgencyWords
-        )
-    ) {
-
-        detectTactic(
-            "urgency"
-        );
-
-    }
-
-
-    if (
-        containsKeyword(
-            text,
-            secrecyWords
-        )
-    ) {
-
-        detectTactic(
-            "secrecy"
-        );
-
-    }
-
-
-    if (
-        containsKeyword(
-            text,
-            moneyWords
-        )
-    ) {
-
-        detectTactic(
-            "money"
-        );
-
-    }
-
-
-    calculateRisk();
-
-}
-
-
-/* =========================================================
-   KEYWORD CHECK
-========================================================= */
-
-function containsKeyword(
-    text,
-    words
-) {
-
-    for (
-        let i = 0;
-        i < words.length;
-        i++
-    ) {
-
-        if (
-            text.includes(
-                words[i]
-            )
-        ) {
-
-            return true;
-
-        }
-
-    }
-
-
-    return false;
-
-}
-
-
-/* =========================================================
-   DETECT TACTIC
-========================================================= */
-
-function detectTactic(type) {
-
-    if (
-        detected[type]
-    ) {
-
-        return;
-
-    }
-
-
-    detected[type] = true;
-
-
-    let card =
-        document.getElementById(
-            "tactic-" + type
-        );
-
-
-    card.classList.add(
-        "detected"
-    );
-
-
-    let textElement =
-        document.getElementById(
-            type + "-text"
-        );
-
-
-    textElement.innerText =
-        "⚠ DETECTED";
-
-
-    textElement.classList.add(
-        "detected-text"
-    );
-
-}
-
-
-/* =========================================================
-   CALCULATE RISK
-========================================================= */
-
-function calculateRisk() {
-
-    let newRisk = 0;
-
-
-    if (
-        detected.authority
-    ) {
-
-        newRisk += 25;
-
-    }
-
-
-    if (
-        detected.urgency
-    ) {
-
-        newRisk += 25;
-
-    }
-
-
-    if (
-        detected.secrecy
-    ) {
-
-        newRisk += 25;
-
-    }
-
-
-    if (
-        detected.money
-    ) {
-
-        newRisk += 25;
-
-    }
-
-
-    if (
-        newRisk > 100
-    ) {
-
-        newRisk = 100;
-
-    }
-
-
-    risk = newRisk;
-
-
-    updateRiskUI();
-
-
-    if (
-        risk >= 50
-    ) {
-
-        activateWarning();
-
-    }
-
-}
-
-
-/* =========================================================
-   UPDATE RISK UI
-========================================================= */
-
-function updateRiskUI() {
-
-    document.getElementById(
-        "risk-number"
-    ).innerText =
-        risk;
-
-
-    document.getElementById(
-        "risk-fill"
-    ).style.width =
-        risk + "%";
-
-
-    let level =
-        document.getElementById(
-            "risk-level"
-        );
-
-
-    if (
-        risk < 25
-    ) {
-
-        level.innerText =
-            "SAFE";
-
-    }
-
-    else if (
-        risk < 50
-    ) {
-
-        level.innerText =
-            "SUSPICIOUS";
-
-    }
-
-    else if (
-        risk < 75
-    ) {
-
-        level.innerText =
-            "HIGH RISK";
-
-    }
-
-    else {
-
-        level.innerText =
-            "CRITICAL";
-
-    }
-
-}
-
-
-/* =========================================================
-   WARNING
-========================================================= */
-
-function activateWarning() {
-
-    document.body
-        .classList.add(
-            "danger"
-        );
-
-
-    document.getElementById(
-        "warning"
-    ).classList.add(
-        "active"
-    );
-
-
-    document.getElementById(
-        "emergency-actions"
-    ).classList.add(
-        "active"
-    );
-
-
-    document.getElementById(
-        "warning-text"
-    ).innerText =
-        "Call Sense detected suspicious scam language. Risk level: "
-        + risk
-        + "%. Do NOT share OTPs, passwords or banking information. Do NOT transfer money.";
-
-
-    document.getElementById(
-        "nav-status"
-    ).innerText =
-        "🚨 HIGH RISK DETECTED";
-
-}
-
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-function startTimer() {
-
-    clearInterval(
-        timerInterval
-    );
-
-
-    timerSeconds = 0;
-
+    seconds = 0;
 
     updateTimer();
 
+    timerInterval = setInterval(updateTimer,1000);
 
-    timerInterval =
-        setInterval(
-            function() {
+    document.getElementById('nav-status').innerText =
+        '● PROTECTION ACTIVE';
 
-                timerSeconds++;
+    await startMicrophone();
 
-                updateTimer();
-
-            },
-            1000
-        );
-
+    document.getElementById('protection').scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+    });
 }
 
 
-function updateTimer() {
+/* ================= TIMER ================= */
 
-    let minutes =
-        Math.floor(
-            timerSeconds / 60
-        );
+function updateTimer(){
+
+    seconds++;
+
+    let minutes = Math.floor(seconds / 60);
+    let secs = seconds % 60;
+
+    if(minutes < 10)
+        minutes = '0' + minutes;
+
+    if(secs < 10)
+        secs = '0' + secs;
+
+    document.getElementById('timer').innerText =
+        minutes + ':' + secs;
+}
 
 
-    let seconds =
-        timerSeconds % 60;
+/* ================= MICROPHONE ================= */
+
+async function startMicrophone(){
+
+    try{
+
+        microphoneStream =
+            await navigator.mediaDevices.getUserMedia({
+                audio:true
+            });
+
+        micEnabled = true;
+
+        updateMicUI();
+
+        const SpeechRecognition =
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition;
+
+        if(!SpeechRecognition){
+
+            document.getElementById('mic-text').innerText =
+                'Speech recognition not supported';
+
+            return;
+        }
+
+        recognition = new SpeechRecognition();
+
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = 'en-IN';
+
+        recognition.onresult = function(event){
+
+            let finalText = '';
+            let interimText = '';
+
+            for(
+                let i = event.resultIndex;
+                i < event.results.length;
+                i++
+            ){
+
+                let text =
+                    event.results[i][0].transcript;
+
+                if(event.results[i].isFinal)
+                    finalText += text + ' ';
+                else
+                    interimText += text;
+            }
+
+            if(finalText.trim() !== ''){
+
+                addTranscript(finalText);
+
+                analyzeSpeech(finalText);
+            }
+
+            if(interimText.trim() !== ''){
+
+                document.getElementById('mic-text').innerText =
+                    'Hearing: ' + interimText;
+            }
+
+        };
+
+        recognition.onerror = function(event){
+
+            if(event.error === 'not-allowed'){
+
+                document.getElementById('mic-text').innerText =
+                    'Microphone permission denied';
+
+            }else if(event.error === 'no-speech'){
+
+                document.getElementById('mic-text').innerText =
+                    'Listening for speech...';
+
+            }else{
+
+                document.getElementById('mic-text').innerText =
+                    'Listening...';
+            }
+
+        };
+
+        recognition.onend = function(){
+
+            if(protectionActive && micEnabled){
+
+                try{
+                    recognition.start();
+                }catch(e){}
+
+            }
+
+        };
+
+        recognition.start();
+
+    }catch(error){
+
+        micEnabled = false;
+
+        document.getElementById('mic-text').innerText =
+            'Microphone unavailable';
+
+        updateMicUI();
+    }
+}
 
 
-    if (
-        minutes < 10
-    ) {
+/* ================= MIC TOGGLE ================= */
 
-        minutes =
-            "0" + minutes;
+function toggleMicrophone(){
+
+    if(!recognition)
+        return;
+
+    if(micEnabled){
+
+        micEnabled = false;
+
+        try{
+            recognition.stop();
+        }catch(e){}
+
+    }else{
+
+        micEnabled = true;
+
+        try{
+            recognition.start();
+        }catch(e){}
 
     }
 
+    updateMicUI();
+}
 
-    if (
-        seconds < 10
-    ) {
 
-        seconds =
-            "0" + seconds;
+function updateMicUI(){
 
+    let button =
+        document.querySelector('.mic-toggle');
+
+    let dot =
+        document.getElementById('mic-dot');
+
+    if(micEnabled){
+
+        button.innerText = 'MIC ON';
+
+        dot.style.background = '#00ffae';
+
+        dot.style.boxShadow =
+            '0 0 15px #00ffae';
+
+        document.getElementById('mic-text').innerText =
+            'Listening for suspicious speech';
+
+    }else{
+
+        button.innerText = 'MIC OFF';
+
+        dot.style.background = '#555';
+
+        dot.style.boxShadow = 'none';
+
+        document.getElementById('mic-text').innerText =
+            'Microphone paused';
+    }
+}
+
+
+/* ================= TRANSCRIPTION ================= */
+
+function addTranscript(text){
+
+    let box =
+        document.getElementById('transcript');
+
+    let placeholder =
+        box.querySelector('.transcript-placeholder');
+
+    if(placeholder)
+        placeholder.remove();
+
+    box.innerHTML +=
+        '<div>' + escapeHTML(text) + '</div>';
+
+    box.scrollTop = box.scrollHeight;
+}
+
+
+function escapeHTML(text){
+
+    return text
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;')
+        .replace(/'/g,'&#039;');
+}
+
+
+/* ================= ANALYZE ================= */
+
+function analyzeSpeech(text){
+
+    let lower = text.toLowerCase();
+
+    if(
+        !detected.authority &&
+        authorityKeywords.some(keyword =>
+            lower.includes(keyword)
+        )
+    ){
+        detectTactic('authority');
     }
 
 
-    document.getElementById(
-        "timer"
-    ).innerText =
-        minutes + ":" + seconds;
+    if(
+        !detected.urgency &&
+        urgencyKeywords.some(keyword =>
+            lower.includes(keyword)
+        )
+    ){
+        detectTactic('urgency');
+    }
+
+
+    if(
+        !detected.secrecy &&
+        secrecyKeywords.some(keyword =>
+            lower.includes(keyword)
+        )
+    ){
+        detectTactic('secrecy');
+    }
+
+
+    if(
+        !detected.money &&
+        moneyKeywords.some(keyword =>
+            lower.includes(keyword)
+        )
+    ){
+        detectTactic('money');
+    }
 
 }
 
 
-/* =========================================================
-   CALL 1930
-========================================================= */
+/* ================= DETECT TACTIC ================= */
 
-function call1930() {
+function detectTactic(type){
 
-    window.location.href =
-        "tel:1930";
+    detected[type] = true;
+
+    document
+        .getElementById(type)
+        .classList.add('detected');
+
+    calculateRisk();
+}
+
+
+/* ================= RISK ================= */
+
+function calculateRisk(){
+
+    let newRisk = 0;
+
+    if(detected.authority)
+        newRisk += 25;
+
+    if(detected.urgency)
+        newRisk += 25;
+
+    if(detected.secrecy)
+        newRisk += 25;
+
+    if(detected.money)
+        newRisk += 25;
+
+    if(newRisk > 100)
+        newRisk = 100;
+
+    risk = newRisk;
+
+    updateRiskUI();
+
+    if(risk >= 50)
+        activateWarning();
+}
+
+
+function updateRiskUI(){
+
+    document.getElementById('risk-number').innerText =
+        risk + '%';
+
+    document.getElementById('risk-fill').style.width =
+        risk + '%';
+
+    let label =
+        document.getElementById('risk-label');
+
+    if(risk < 25){
+
+        label.innerText = 'SAFE';
+
+    }else if(risk < 50){
+
+        label.innerText = 'SUSPICIOUS';
+
+    }else if(risk < 75){
+
+        label.innerText = 'HIGH RISK';
+
+    }else{
+
+        label.innerText = 'CRITICAL';
+    }
+}
+
+
+/* ================= WARNING ================= */
+
+function activateWarning(){
+
+    document
+        .getElementById('warning')
+        .style.display = 'block';
+
+    document
+        .getElementById('emergency')
+        .style.display = 'grid';
+
+    document.body.classList.add('danger');
+
+    document
+        .getElementById('danger-overlay')
+        .classList.add('active');
+
+    document.getElementById('nav-status').innerText =
+        risk >= 75
+        ? '🚨 CRITICAL RISK DETECTED'
+        : '🚨 HIGH RISK DETECTED';
+}
+
+
+/* ================= DISMISS ALERT ================= */
+
+function dismissDangerAlert(){
+
+    document
+        .getElementById('danger-overlay')
+        .classList.remove('active');
+
+    document.body.classList.remove('danger');
+
+    document.getElementById('nav-status').innerText =
+        risk >= 75
+        ? '🚨 CRITICAL RISK DETECTED'
+        : '🚨 HIGH RISK DETECTED';
+
+    document.getElementById('protection').scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+    });
+}
+
+
+/* ================= CALL 1930 ================= */
+
+function call1930(){
+
+    /* Stop the giant alert first */
+
+    document
+        .getElementById('danger-overlay')
+        .classList.remove('active');
+
+    document.body.classList.remove('danger');
+
+    /* Show success page */
+
+    document
+        .getElementById('success-screen')
+        .classList.add('active');
 
 }
 
 
-/* =========================================================
-   FAMILY CONTACT
-========================================================= */
+/* ================= CLOSE SUCCESS ================= */
 
-function contactFamily() {
+function closeSuccessScreen(){
 
-    document.getElementById(
-        "family-modal"
-    ).classList.add(
-        "active"
-    );
+    document
+        .getElementById('success-screen')
+        .classList.remove('active');
 
+    document.getElementById('nav-status').innerText =
+        risk >= 75
+        ? '🚨 CRITICAL RISK DETECTED'
+        : risk >= 50
+        ? '🚨 HIGH RISK DETECTED'
+        : '● PROTECTION ACTIVE';
+
+    document.getElementById('protection').scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+    });
 }
 
 
-function closeFamilyModal() {
+/* ================= FAMILY ================= */
 
-    document.getElementById(
-        "family-modal"
-    ).classList.remove(
-        "active"
-    );
+function contactFamily(){
 
+    document
+        .getElementById('danger-overlay')
+        .classList.remove('active');
+
+    document.body.classList.remove('danger');
+
+    document
+        .getElementById('family-modal')
+        .classList.add('active');
 }
 
 
-function sendFamilyAlert() {
+function closeFamilyModal(){
+
+    document
+        .getElementById('family-modal')
+        .classList.remove('active');
+}
+
+
+function sendFamilyAlert(){
 
     alert(
-        "Trusted contact alert sent successfully."
+        'Trusted contact alert sent successfully.'
     );
-
 
     closeFamilyModal();
 
+    document.getElementById('nav-status').innerText =
+        '✓ FAMILY ALERT SENT';
 }
 
 
-/* =========================================================
-   STOP PROTECTION
-========================================================= */
+/* ================= STOP ================= */
 
-function stopProtection() {
+function stopProtection(){
 
     protectionActive = false;
 
+    clearInterval(timerInterval);
+
+    timerInterval = null;
 
     stopMicrophone();
 
+    document.getElementById('protection').style.display =
+        'none';
 
-    clearInterval(
-        timerInterval
-    );
+    document.getElementById('home').style.display =
+        'flex';
 
+    document.body.classList.remove('danger');
 
-    document.body
-        .classList.remove(
-            "danger"
-        );
+    document
+        .getElementById('danger-overlay')
+        .classList.remove('active');
 
+    document
+        .getElementById('success-screen')
+        .classList.remove('active');
 
-    document.getElementById(
-        "protection"
-    ).classList.remove(
-        "active"
-    );
+    document
+        .getElementById('family-modal')
+        .classList.remove('active');
 
+    document.getElementById('nav-status').innerText =
+        '● SYSTEM READY';
 
-    document.getElementById(
-        "home"
-    ).classList.add(
-        "active"
-    );
-
-
-    document.getElementById(
-        "nav-status"
-    ).innerText =
-        "SYSTEM READY";
-
-
-    resetAnalysis();
-
-
-    window.scrollTo(
-        0,
-        0
-    );
-
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
 }
 
 
-/* =========================================================
-   RESET
-========================================================= */
+/* ================= STOP MIC ================= */
 
-function resetAnalysis() {
+function stopMicrophone(){
+
+    micEnabled = false;
+
+    if(recognition){
+
+        try{
+            recognition.stop();
+        }catch(e){}
+
+    }
+
+    if(microphoneStream){
+
+        microphoneStream
+            .getTracks()
+            .forEach(track => track.stop());
+
+        microphoneStream = null;
+    }
+
+    updateMicUI();
+}
+
+
+/* ================= RESET ================= */
+
+function resetAnalysis(){
 
     risk = 0;
 
-
     detected = {
-
-        authority: false,
-
-        urgency: false,
-
-        secrecy: false,
-
-        money: false
-
+        authority:false,
+        urgency:false,
+        secrecy:false,
+        money:false
     };
 
+    document.getElementById('risk-number').innerText =
+        '0%';
 
-    document.getElementById(
-        "risk-number"
-    ).innerText =
-        "0";
+    document.getElementById('risk-label').innerText =
+        'SAFE';
 
+    document.getElementById('risk-fill').style.width =
+        '0%';
 
-    document.getElementById(
-        "risk-level"
-    ).innerText =
-        "SAFE";
+    document.getElementById('transcript').innerHTML =
+        '<span class="transcript-placeholder">Waiting for speech...</span>';
 
+    document.getElementById('warning').style.display =
+        'none';
 
-    document.getElementById(
-        "risk-fill"
-    ).style.width =
-        "0%";
+    document.getElementById('emergency').style.display =
+        'none';
 
-
-    document.getElementById(
-        "transcript"
-    ).innerHTML =
-        '<span class="placeholder">Waiting for speech...</span>';
-
-
-    const tactics = [
-
-        "authority",
-
-        "urgency",
-
-        "secrecy",
-
-        "money"
-
-    ];
-
-
-    tactics.forEach(
-        function(type) {
-
-            document.getElementById(
-                "tactic-" + type
-            ).classList.remove(
-                "detected"
-            );
-
-
-            document.getElementById(
-                type + "-text"
-            ).innerText =
-                "Not detected";
-
-
-            document.getElementById(
-                type + "-text"
-            ).classList.remove(
-                "detected-text"
-            );
-
-        }
-    );
-
-
-    document.getElementById(
-        "warning"
-    ).classList.remove(
-        "active"
-    );
-
-
-    document.getElementById(
-        "emergency-actions"
-    ).classList.remove(
-        "active"
-    );
-
-
-    document.body
-        .classList.remove(
-            "danger"
+    document
+        .querySelectorAll('.tactic')
+        .forEach(tactic =>
+            tactic.classList.remove('detected')
         );
+
+    document.body.classList.remove('danger');
+
+    document
+        .getElementById('danger-overlay')
+        .classList.remove('active');
+
+    document
+        .getElementById('success-screen')
+        .classList.remove('active');
+
+    document
+        .getElementById('family-modal')
+        .classList.remove('active');
 
 }
 
