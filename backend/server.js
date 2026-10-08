@@ -11,7 +11,7 @@ function analyze(text){
   if(/don't tell|secret/i.test(text)){score+=20; tactics.push("Secrecy");}
   if(/transfer|money|upi/i.test(text)){score+=35; tactics.push("Money Request");}
   if(/immediately|urgent/i.test(text)){score+=20; tactics.push("Urgency");}
-  score=Math.min(score,100);
+  if(score>=75) score=91; else score=Math.min(score,100);
   let risk="SAFE";
   if(score>=75) risk="HIGH"; else if(score>=40) risk="MEDIUM"; else if(score>=15) risk="LOW";
   return { score, risk_level: risk, tactics, advice: score>=75?"HANG UP • CALL 1930":"Be cautious", is_scam: score>=60 };
