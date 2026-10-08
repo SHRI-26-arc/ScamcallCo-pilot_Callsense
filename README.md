@@ -1,16 +1,56 @@
-# React + Vite
+# 📞 ScamCall Co-Pilot - CallSense
+### Your Second Ear Against Phone Scams
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+🔴 **Live App:** https://shri-26-arc.github.io/ScamcallCo-pilot_Callsense/
+💻 **GitHub:** https://github.com/shri-26-arc/ScamcallCo-pilot_Callsense
 
-Currently, two official plugins are available:
+## 📝 About The Project
+CallSense is an AI-powered Co-Pilot that detects scam calls in real-time. Unlike Truecaller which only shows caller name, CallSense understands *what* the caller is saying.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+It listens, transcribes live calls, and instantly warns you with a Scam Risk Score if it detects fraud patterns like "OTP share", "Bank blocked", "Urgent money needed".
 
-## React Compiler
+Specially designed for elders and vulnerable users.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Key Features
+- 🎙️ Real-time Call Transcription
+- 🚨 Live Scam Risk Score (0-100%)
+- 🔍 Keyword Flagging (OTP, Bank, Police case etc.)
+- 📊 Risk Dashboard - Call History & Analysis
+- 🔒 Privacy-First - No call stored on server
 
-## Expanding the Oxlint configuration
+## 🛠️ Tech Stack
+- Frontend: React.js + Vite
+- Styling: CSS3
+- Deployment: GitHub Pages
+- Logic: JavaScript + NLP Pattern Matching (Prototype)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 📂 Project Structure
+/src
+    - assets/
+    - App.jsx (Main logic)
+    - App.css
+    - main.jsx
+    - member2-dashboard.html (Risk Dashboard)
+
+## 🗄️ Database
+**Current Prototype:** No external database used. Uses Mock Data / Local State for demo to keep it lightweight and private.
+
+**Future Production:** Firebase + MongoDB for user history, community reported scam numbers, and integration with 1930 Cyber Crime & TRAI database.
+
+## 🚀 Prototype Status
+This is a functional MVP / Prototype. The live link demonstrates working UI and scam-detection flow with simulated data.
+
+### Future Advancements to Make it Production-Ready:
+1.  **Advanced AI:** LLM fine-tuned on 10k+ Indian scam calls, Voice Cloning Detection
+2.  **Multi-Language:** Hindi, Kannada, Tamil, Telugu, Hinglish support
+3.  **Mobile App:** Android app with background call listening
+4.  **Safety:** Auto-report to 1930 portal + PDF evidence generator for police
+5.  **Family Shield:** Alert family if parents get scam call
+
+## 👥 Team
+- Member 2: Risk Dashboard Done
+
+## ▶️ How to Run Locally
+```bash
+npm install
+npm run dev
